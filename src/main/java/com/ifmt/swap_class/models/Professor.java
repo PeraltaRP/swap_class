@@ -1,10 +1,15 @@
 package com.ifmt.swap_class.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,4 +39,6 @@ public class Professor {
 
   @Column(name = "senha", nullable = false)
   private String senha;
+
+  @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)  private List<DisciplinaTurma> atribuicoes = new ArrayList<>();
 }

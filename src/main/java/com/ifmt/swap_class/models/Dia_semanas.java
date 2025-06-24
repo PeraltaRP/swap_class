@@ -1,5 +1,6 @@
 package com.ifmt.swap_class.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -19,14 +20,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "disciplinas")
-public class Disciplina {
+@Table(name = "semana")
+public class Dia_semanas  implements Serializable{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
   private String nome;
 
-  @OneToMany(mappedBy = "disciplina")
-  private List<DisciplinaTurma> turmas;
+  @OneToMany(mappedBy = "dia")
+  private List<Horario> horarios;
+  
 }
