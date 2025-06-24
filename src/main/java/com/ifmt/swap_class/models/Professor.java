@@ -31,4 +31,7 @@ public class Professor {
 
   @Column(name = "matricula", nullable = false)
   private String matricula;
+
+  @Column(name = "senha", nullable = false)
+  private String senha;
 }

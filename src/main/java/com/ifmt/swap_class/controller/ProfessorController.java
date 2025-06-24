@@ -14,12 +14,14 @@ import com.ifmt.swap_class.service.ProfessorService;
 @RequestMapping("/professores") // rota de acesso ao RestApiService de professores
 public class ProfessorController {
   //encapsula uma resposta HTTP com o retorno de um objeto JSON
-  @SuppressWarnings("unused")
   @Autowired
   private ProfessorService professorService;
 
-  @PostMapping("novo/professor")
-  public ResponseEntity<ProfessorDTO> insert(@RequestBody ProfessorDTO request){
 
-  }
+   @PostMapping("/novo")
+    public ResponseEntity<Long> insert(@RequestBody ProfessorDTO dto) {
+        dto = professorService.insert(dto);
+        
+        return ResponseEntity.ok().body(dto.getId());
+    }
 }
