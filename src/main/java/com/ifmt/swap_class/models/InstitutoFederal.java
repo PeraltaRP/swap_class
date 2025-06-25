@@ -14,23 +14,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "semana")
-public class Dia_semanas  implements Serializable{
-  private static final long serialVersionUID = 1L;
+@Table(name = "campus")
+public class InstitutoFederal implements Serializable{
+    private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-  private String nome;
+    private String nome;
+    private String sigla;
 
-  @OneToMany(mappedBy = "dia")
-  private List<Horario> horarios;
-  
+    @OneToMany(mappedBy = "instituto")
+    private List<Campus> campi;
+    
 }

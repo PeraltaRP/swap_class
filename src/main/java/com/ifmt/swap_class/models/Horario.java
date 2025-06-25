@@ -39,5 +39,8 @@ public class Horario implements Serializable{
 
   private LocalTime hora_inicio;
   private LocalTime hora_fim;
-
+  
+  @ManyToOne
+  @JoinColumn(name = "disciplina_turma_id")
+  private DisciplinaTurma disciplinaTurma;
 }

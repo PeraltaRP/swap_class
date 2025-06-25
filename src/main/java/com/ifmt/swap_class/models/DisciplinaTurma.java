@@ -3,7 +3,6 @@ package com.ifmt.swap_class.models;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,7 +28,7 @@ public class DisciplinaTurma implements Serializable{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @ManyToAny
+  @ManyToOne
   private Professor professor;
 
   @ManyToOne

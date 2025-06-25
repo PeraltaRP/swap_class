@@ -27,7 +27,6 @@ public class ProfessorService {
     Professor entity = new Professor();
     entity.setNome(dto.getNome());
     entity.setEmail(dto.getEmail());
-    entity.setSenha(dto.getSenha());
     entity.setMatricula(dto.getMatricula());
 
     entity = professorRepository.save(entity);

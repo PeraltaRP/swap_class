@@ -1,5 +1,6 @@
 package com.ifmt.swap_class.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,7 +26,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "professores")
 
-public class Professor {
+public class Professor implements Serializable{
+  private static final long serialVersionUID = 1L;
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
@@ -41,4 +46,8 @@ public class Professor {
   private String senha;
 
   @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)  private List<DisciplinaTurma> atribuicoes = new ArrayList<>();
+
+  @ManyToOne
+  @JoinColumn(name = "campus_id")
+  private Campus campus;
 }
