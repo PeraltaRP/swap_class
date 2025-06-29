@@ -27,10 +27,6 @@ public class Turma implements Serializable{
     
     private String nome;
 
-    private Integer ano;
-
-    private Integer semestre;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "curso_id")
     private Curso curso;

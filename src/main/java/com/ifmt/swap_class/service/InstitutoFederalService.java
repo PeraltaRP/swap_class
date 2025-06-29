@@ -28,7 +28,6 @@ public class InstitutoFederalService {
     public InstitutoFederalDTO insert(InstitutoFederalDTO dto) {
       InstitutoFederal entity = new InstitutoFederal();
       entity.setNome(dto.getNome());
-      entity.setSigla(dto.getSigla());
       entity = institutoRepository.save(entity);
       return new InstitutoFederalDTO(entity);
     }

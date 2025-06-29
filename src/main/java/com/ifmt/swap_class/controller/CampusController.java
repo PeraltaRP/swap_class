@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ifmt.swap_class.dto.InstitutoFederalDTO;
-import com.ifmt.swap_class.service.InstitutoFederalService;
+import com.ifmt.swap_class.dto.CampusDTO;
+import com.ifmt.swap_class.service.CampusService;
 
 @RestController
-@RequestMapping(value = "/institutos")
-public class InstitutoFederalController {
+@RequestMapping(value = "/campi")
+public class CampusController {
   
   @Autowired
-  private  InstitutoFederalService institutoService;
+  private  CampusService campusService;
 
   @GetMapping(value = "/getAll")
-  public ResponseEntity<List<InstitutoFederalDTO>> findAll() {
-    List<InstitutoFederalDTO> list = institutoService.findAll();
+  public ResponseEntity<List<CampusDTO>> findAll() {
+    List<CampusDTO> list = campusService.findAll();
     return ResponseEntity.ok().body(list);
   }
   
 
   // cadastrar um novo instituto federal
   @PostMapping(value = "/cadastrar")
-  public ResponseEntity<InstitutoFederalDTO> insert(@RequestBody InstitutoFederalDTO dto) {
-        dto = institutoService.insert(dto);
+  public ResponseEntity<CampusDTO> insert(@RequestBody CampusDTO dto) {
+        dto = campusService.insert(dto);
        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
