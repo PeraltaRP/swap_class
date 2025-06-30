@@ -23,6 +23,8 @@ public class InstitutoFederalService {
       return list.stream().map(x -> new InstitutoFederalDTO(x)).collect(Collectors.toList());
     }
 
+  
+
 
     @Transactional
     public InstitutoFederalDTO insert(InstitutoFederalDTO dto) {

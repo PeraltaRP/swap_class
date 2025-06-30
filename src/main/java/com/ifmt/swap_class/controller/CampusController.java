@@ -30,12 +30,12 @@ public class CampusController {
   }
   
 
-  // cadastrar um novo instituto federal
-  @PostMapping(value = "/cadastrar")
-  public ResponseEntity<CampusDTO> insert(@RequestBody CampusDTO dto) {
-        dto = campusService.insert(dto);
-       URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-        return ResponseEntity.created(uri).body(dto);
+  // Cadastrar novo campus com cursos e turmas
+    @PostMapping(value = "/cadastrar")
+    public ResponseEntity<CampusDTO> insert(@RequestBody CampusDTO dto) {
+        CampusDTO novo = campusService.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(novo.getId()).toUri();
+        return ResponseEntity.created(uri).body(novo);
     }
 
 }
