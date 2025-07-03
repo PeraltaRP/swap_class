@@ -11,14 +11,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 @Entity
 @Table(name = "institutos")
 public class InstitutoFederal implements Serializable {
@@ -27,19 +31,19 @@ public class InstitutoFederal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres")
+    @Column(nullable = false, length = 100)
     private String nome;
+
+    @NotBlank(message = "Sigla é obrigatória")
+    @Size(min = 2, max = 10, message = "Sigla deve ter entre 2 e 10 caracteres")
+    @Column(nullable = false, unique = true, length = 10)
     private String sigla;
 
-    @OneToMany(mappedBy = "instituto", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instituto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Campus> campi = new ArrayList<>();
-
-
-
-
-
-
-
-
 
     @Override
     public boolean equals(Object obj) {
@@ -65,7 +69,4 @@ public class InstitutoFederal implements Serializable {
         result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
         return result;
     }
-
-
-    
 }

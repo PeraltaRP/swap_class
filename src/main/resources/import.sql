@@ -32,4 +32,3 @@ INSERT INTO institutos (nome, sigla) VALUES ('Instituto Federal Catarinense', 'I
 INSERT INTO institutos (nome, sigla) VALUES ('Instituto Federal de Sergipe', 'IFS');
 INSERT INTO institutos (nome, sigla) VALUES ('Instituto Federal do Tocantins', 'IFTO');
 
-INSERT INTO campi (nome, instituto_id) VALUES ('Água Boa', 1);

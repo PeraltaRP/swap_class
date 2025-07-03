@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ifmt.swap_class.dto.CampusDTO;
+import com.ifmt.swap_class.dto.CursoDTO;
+import com.ifmt.swap_class.exception.ResourceNotFoundException;
 import com.ifmt.swap_class.models.Campus;
 import com.ifmt.swap_class.models.Curso;
 import com.ifmt.swap_class.models.InstitutoFederal;
@@ -16,27 +18,25 @@ import com.ifmt.swap_class.models.Turma;
 import com.ifmt.swap_class.repository.CampusRepository;
 import com.ifmt.swap_class.repository.InstitutoFederalRepository;
 
-
 @Service
 public class CampusService {
 
     @Autowired
     private CampusRepository campusRepository;
 
-       @Autowired
+    @Autowired
     private InstitutoFederalRepository institutoRepository;
 
     @Transactional(readOnly = true)
     public List<CampusDTO> findAll() {
-      List <Campus> list = campusRepository.findAll();
-      return list.stream().map(x -> new CampusDTO(x)).collect(Collectors.toList());
+        List<Campus> list = campusRepository.findAll();
+        return list.stream().map(x -> new CampusDTO(x)).collect(Collectors.toList());
     }
 
-
     @Transactional
-    public CampusDTO insert(CampusDTO dto) {
-       InstitutoFederal instituto = institutoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Instituto não encontrado"));
+    public CampusDTO insert(CampusDTO dto, long id) {
+        InstitutoFederal instituto = institutoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Instituto", id));
 
         Campus campus = new Campus();
         campus.setNome(dto.getNome());
@@ -65,5 +65,5 @@ public class CampusService {
 
         return new CampusDTO(salvo);
     }
-    
+
 }

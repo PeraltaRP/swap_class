@@ -1,6 +1,5 @@
 package com.ifmt.swap_class.models;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +13,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Data;
-
-
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "campi")
 public class Campus implements Serializable {
@@ -31,6 +34,9 @@ public class Campus implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Nome é obrigatório")
+    @Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres")
+    @Column(nullable = false, length = 100)
     private String nome;
 
     @ManyToOne(optional = false)
